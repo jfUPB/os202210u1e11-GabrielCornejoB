@@ -5,8 +5,10 @@
 
 EventList *CreateEventList(void)
 {
-    EventList *eventList = NULL;
-
+    EventList *eventList = malloc(sizeof(EventList));
+    eventList->isEmpty = '1';                       //1 = Yes, 0 = No
+    eventList->head = NULL;
+    eventList->last = NULL;
     return eventList;
 }
 
@@ -19,7 +21,7 @@ void DestroyEventList(EventList *this)
 
 Event *SearchEvent(EventList *this, char *name)
 {
-
+    
 
     return NULL;
 }
