@@ -21,43 +21,38 @@ void DestroyEventList(EventList *this)
 
 Event *SearchEvent(EventList *this, char *name)
 {
-    /*
-    if(this->isEmpty == '1'){
-        Event *ans = NULL;
-        return ans;
-    }*/
     if(this->isEmpty == '0'){
         Event *tmp = this->head; 
-    do{
-        if(strcmp(name, tmp->eventName) == 0){
-            return tmp;
+        do{
+            if(strcmp(name, tmp->eventName) == 0){
+                return tmp;
+            }
+            tmp = tmp->next;
         }
-        tmp = tmp->next;
-    }
-    while(tmp != NULL); 
-    return NULL;
+        while(tmp != NULL); 
+        return NULL;
     }  
+    else{
+        return NULL;
+    }
 }
 
 void AddEvent(EventList *this, Event *event)
-{
-    this->head = event;
-    this->last = event;
-    this->isEmpty = '0';
-    /*
+{   
     if(this->isEmpty == '1'){
-        this->head = &event;
-        this->last = &event;
+        this->head = event;
+        this->last = event;
+        this->isEmpty = '0';
     }
     else{
-        /*Event *bool = SearchEvent(&this, event->eventName);
+        Event *bool = SearchEvent(this, event->eventName);
         if(bool == NULL){
             this->last->next = event;
             this->last = event;
         }
         this->last->next = event;
         this->last = event;
-    }*/
+    }
 }
 
 void RemoveEvent(EventList *this, char *name)
