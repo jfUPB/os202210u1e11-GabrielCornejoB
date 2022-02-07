@@ -22,7 +22,7 @@ void DestroyEventList(EventList *this)
 Event *SearchEvent(EventList *this, char *name)
 {
     if(this->isEmpty == '1'){
-        return NULL;
+        return 0;
     }
     Event *tmp = this->head; 
     do{
