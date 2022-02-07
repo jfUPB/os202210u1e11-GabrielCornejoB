@@ -1,0 +1,1 @@
+../tester/run-tests.sh: line 27:   263 Segmentation fault      (core dumped) ./main < tests/1.in

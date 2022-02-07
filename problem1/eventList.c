@@ -21,6 +21,9 @@ void DestroyEventList(EventList *this)
 
 Event *SearchEvent(EventList *this, char *name)
 {
+    if(this->isEmpty == '1'){
+        return NULL;
+    }
     Event *tmp = this->head; 
     for (int i = 0; i < sizeof(this); i++){
         if(strcmp(name, tmp->eventName)){return tmp;}
