@@ -21,7 +21,10 @@ void DestroyEventList(EventList *this)
 
 Event *SearchEvent(EventList *this, char *name)
 {
-    if(this->isEmpty == '0'){
+    if(this->isEmpty == '1'){
+        return NULL;
+    }  
+    else{    
         Event *tmp = this->head; 
         do{
             if(strcmp(name, tmp->eventName) == 0){
@@ -29,10 +32,7 @@ Event *SearchEvent(EventList *this, char *name)
             }
             tmp = tmp->next;
         }
-        while(tmp != NULL); 
-        return NULL;
-    }  
-    else{
+        while(tmp != NULL);         
         return NULL;
     }
 }
@@ -50,13 +50,12 @@ void AddEvent(EventList *this, Event *event)
             this->last->next = event;
             this->last = event;
         }
-        this->last->next = event;
-        this->last = event;
     }
 }
 
 void RemoveEvent(EventList *this, char *name)
 {
+    /*
     if(this->isEmpty != '1'){
         Event *bool = SearchEvent(this, name);
         if(bool != NULL){
@@ -71,7 +70,7 @@ void RemoveEvent(EventList *this, char *name)
             }
             //free(bool);
         }
-    }
+    }*/
 }
 
 void ListEvents(EventList *this)
