@@ -21,14 +21,20 @@ void DestroyEventList(EventList *this)
 
 Event *SearchEvent(EventList *this, char *name)
 {
-    
-
+    Event *tmp = this->head; 
+    for (int i = 0; i < sizeof(this); i++){
+        if(strcmp(name, tmp->eventName)){return tmp;}
+        tmp = tmp->next;
+    }   
     return NULL;
 }
 
 void AddEvent(EventList *this, Event *event)
 {
-
+    Event *bool = SearchEvent(this, event);
+    if(bool == NULL){
+        
+    }
 }
 
 void RemoveEvent(EventList *this, char *name)
