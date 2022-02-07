@@ -33,7 +33,14 @@ void AddEvent(EventList *this, Event *event)
 {
     Event *bool = SearchEvent(this, event);
     if(bool == NULL){
-        
+        if(this->isEmpty == '1'){
+            this->head = event;
+            this->last = event;
+        }
+        else{
+            this->last->next = event;
+            this->last = event;
+        }
     }
 }
 
