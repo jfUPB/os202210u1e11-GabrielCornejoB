@@ -60,6 +60,9 @@ void RemoveEvent(EventList *this, char *name)
         if(bool != NULL){
             //Si es el primer elemento de la lista
             if(strcmp(this->head->eventName,bool->eventName) == 0){
+                if(bool->next == NULL){
+                    this->isEmpty = '1';
+                }
                 this->head = this->head->next;
                 DestroyEvent(bool);
             }
