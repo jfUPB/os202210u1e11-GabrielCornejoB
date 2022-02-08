@@ -49,28 +49,40 @@ void AddEvent(EventList *this, Event *event)
         if(bool == NULL){
             this->last->next = event;
             this->last = event;
-        }
+        }   
     }
 }
 
 void RemoveEvent(EventList *this, char *name)
 {
-    /*
-    if(this->isEmpty != '1'){
+    if(this->isEmpty == '0'){
         Event *bool = SearchEvent(this, name);
         if(bool != NULL){
             //Si es el primer elemento de la lista
             if(strcmp(this->head->eventName,bool->eventName) == 0){
                 this->head = this->head->next;
+                DestroyEvent(bool);
             }
-            //Si es el ultimo
-            else if(strcmp(this->last->eventName,bool->eventName) == 0){
-                this->last = NULL;
-                //Falta poner que el next del penultimo sea null tambien
-            }
-            //free(bool);
+            else{
+                Event *tmp = this->head;
+                do{
+                    if(strcmp(tmp->next->eventName, bool->eventName) == 0){
+                        //Si queremos borrar el ultimo
+                        if(tmp->next->next == NULL){
+                            tmp->next = NULL;
+                            this->last = tmp;
+                            break;
+                        }
+                        //Si queremos borrar uno en medio de la lista
+                        tmp->next = bool->next;
+                        break;
+                    }
+                    tmp = tmp->next;
+                }
+                while(tmp != NULL);
+            } 
         }
-    }*/
+    }
 }
 
 void ListEvents(EventList *this)
