@@ -14,8 +14,15 @@ EventList *CreateEventList(void)
 
 void DestroyEventList(EventList *this)
 {
-
-
+    Event *tmp = this->head;
+    if(tmp != NULL){
+        do{
+        char *name = tmp->eventName;
+        tmp = tmp->next;
+        RemoveEvent(this, name);
+        }
+        while(tmp != NULL);
+    }
     free(this);
 }
 
@@ -49,7 +56,10 @@ void AddEvent(EventList *this, Event *event)
         if(bool == NULL){
             this->last->next = event;
             this->last = event;
-        }   
+        }  
+        else{
+            DestroyEvent(event);
+        }
     }
 }
 
@@ -74,10 +84,12 @@ void RemoveEvent(EventList *this, char *name)
                         if(tmp->next->next == NULL){
                             tmp->next = NULL;
                             this->last = tmp;
+                            DestroyEvent(bool);
                             break;
                         }
                         //Si queremos borrar uno en medio de la lista
                         tmp->next = bool->next;
+                        DestroyEvent(bool);
                         break;
                     }
                     tmp = tmp->next;
@@ -100,6 +112,5 @@ void ListEvents(EventList *this)
             tmp = tmp->next;
         }
         while(tmp != NULL);
-        
     }
 }
